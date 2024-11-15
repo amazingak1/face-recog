@@ -1,3 +1,4 @@
+import streamlit as st
 import face_recognition
 import cv2
 import numpy as np
@@ -28,11 +29,10 @@ def speak_welcome(name):
             pass
         os.remove(audio_file)
     except Exception as e:
-        print(f"Error in speech synthesis: {e}")
+        st.error(f"Error in speech synthesis: {e}")
 
 # Main Code
-print("Hello")
-video_capture = cv2.VideoCapture(0)
+st.title("Face Recognition Attendance System")
 
 # Load Known Images
 arpit_image = face_recognition.load_image_file("faces/arpit.jpg")
@@ -60,6 +60,8 @@ current_date = now.strftime("%d-%m-%Y")
 f = open(f"{current_date}.csv", "w+", newline="")
 lnwriter = csv.writer(f)
 
+video_capture = cv2.VideoCapture(0)
+
 while True:
     _, frame = video_capture.read()
     small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
@@ -76,7 +78,7 @@ while True:
 
         if matches[best_match_index]:
             name = known_face_names[best_match_index]
-            print(f"Recognized and Marked: {name}")
+            st.write(f"Recognized and Marked: {name}")
 
             # Display name on the screen
             font = cv2.FONT_HERSHEY_SIMPLEX
@@ -92,11 +94,10 @@ while True:
                 speak_welcome(name)
 
     # Show video
-    cv2.imshow("Attendance", frame)
+    st.image(frame, channels="BGR")
 
-    if cv2.waitKey(1) & 0xFF == ord('q'):
+    if st.button('Stop'):
         break
 
 video_capture.release()
-cv2.destroyAllWindows()
 f.close()
