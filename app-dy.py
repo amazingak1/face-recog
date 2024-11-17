@@ -1,4 +1,4 @@
-#C:\Users\kumar\PycharmProjects\face-recognition-attendace\faces
+#ADD ONLY PHOTO IN /FACES , IT WILL READ NAME FROM IT  :)
 import face_recognition
 import cv2
 import numpy as np
