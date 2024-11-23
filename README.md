@@ -3,9 +3,9 @@
 Setup 
 Step 1: Install Required Libraries
 Install all dependencies listed in requirements.txt by running the command in terminal:
-    pip install 'library-name'
-    
-Example: library csv - pip install csv
+    pip install -r requirements.txt
+    (if this does not work then install individually , listed in requirements.txt)
+    Example: library csv - pip install csv
     
 Step 2: Add Faces to the Database
 Add photos of individuals whose attendance needs to be tracked to the ./faces/ folder.
