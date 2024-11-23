@@ -1,6 +1,5 @@
-pip install face_recognition
-pip install cv2
-pip install numpy
-pip install csv
-pip install os
-pip install pygame
+face_recognition
+opencv-python
+numpy
+gTTS
+pygame
